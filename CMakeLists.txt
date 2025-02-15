@@ -24,26 +24,26 @@ set(PICO_BOARD pico CACHE STRING "Board type")
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(neopixel_pio C CXX ASM)
+project(splatoonado C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 # Add executable
-add_executable(neopixel_pio neopixel_pio.c )
+add_executable(splatoonado splatoonado.c )
 
-pico_set_program_name(neopixel_pio "neopixel_pio")
-pico_set_program_version(neopixel_pio "0.1")
+pico_set_program_name(splatoonado "splatoonado")
+pico_set_program_version(splatoonado "0.1")
 
 # Generate PIO header
-pico_generate_pio_header(neopixel_pio ${CMAKE_CURRENT_LIST_DIR}/ws2818b.pio)
+pico_generate_pio_header(splatoonado ${CMAKE_CURRENT_LIST_DIR}/ws2818b.pio)
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(neopixel_pio 0)
-pico_enable_stdio_usb(neopixel_pio 1)
+pico_enable_stdio_uart(splatoonado 0)
+pico_enable_stdio_usb(splatoonado 1)
 
 # Add the standard library to the build
-target_link_libraries(neopixel_pio
+target_link_libraries(splatoonado
         pico_stdlib
         hardware_pio
         hardware_clocks
@@ -51,8 +51,8 @@ target_link_libraries(neopixel_pio
         hardware_pwm)
 
 # Add the standard include files to the build
-target_include_directories(neopixel_pio PRIVATE
+target_include_directories(splatoonado PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}
 )
 
-pico_add_extra_outputs(neopixel_pio)
+pico_add_extra_outputs(splatoonado)

@@ -207,7 +207,7 @@ Fluxograma: Processo de configuração e controle da matriz de LEDs com PIO.
 
 Durante a compilação, é gerada uma biblioteca auxiliar “ws2818b.pio.h” baseada no conteúdo do arquivo “ws2818b.pio”. O arquivo contém um programa de instruções básicas para a máquina de estados e uma função de inicialização em C.
 
-Para mais detalhes, [leia este arquivo no GitHub](https://github.com/BitDogLab/BitDogLab-C/blob/main/neopixel_pio/ws2818b.pio).
+Para mais detalhes, [leia este arquivo no GitHub](https://github.com/BitDogLab/BitDogLab-C/blob/main/splatoonado/ws2818b.pio).
 
 ```c
 // Biblioteca gerada pelo arquivo .pio durante compilação.
@@ -488,7 +488,7 @@ Lembre-se que antes de validar nosso algoritmo precisamos fazer algumas definiç
 
 O arquivo CMakeLists.txt é essencial para configurar como o programa será compilado e vinculado às bibliotecas necessárias. Ele atua como uma "receita" para o CMake criar o arquivo binário final que será carregado na Raspberry Pi Pico.
 
-Considere que o nome do projeto é "neopixel_pio".
+Considere que o nome do projeto é "splatoonado".
 
 ## CMakeLists.txt
 
@@ -497,7 +497,7 @@ Considere que o nome do projeto é "neopixel_pio".
 cmake_minimum_required(VERSION 3.13)
 
 # Nome do projeto
-project(neopixel_pio)
+project(splatoonado)
 
 # Inclui os arquivos do SDK da Raspberry Pi Pico
 include(pico_sdk_import.cmake)
@@ -506,26 +506,26 @@ include(pico_sdk_import.cmake)
 pico_sdk_init()
 
 #Generate PIO header
-pico_generate_pio_header(neopixel_pio ${CMAKE_CURRENT_LIST_DIR}/ws2818b.pio)
+pico_generate_pio_header(splatoonado ${CMAKE_CURRENT_LIST_DIR}/ws2818b.pio)
 
 # Define o executável do projeto, especificando o arquivo principal (microphone_adc_example.c)
-add_executable(neopixel_pio
-        neopixel_pio.c
+add_executable(splatoonado
+        splatoonado.c
         )
 
 # Vincula as bibliotecas necessárias para o funcionamento do programa
-target_link_libraries(neopixel_pio
+target_link_libraries(splatoonado
     pico_stdlib 
     hardware_pio
     hardware_clocks
 )
 
 # Gera arquivos adicionais como .map, .bin, .hex, etc., necessários para a programação do microcontrolador
-pico_add_extra_outputs(neopixel_pio)
+pico_add_extra_outputs(splatoonado)
 
 # Define a URL de referência para este exemplo (opcional)
 # Isso é útil se você estiver compartilhando o código e quiser apontar para uma fonte online
-example_auto_set_url(neopixel_pio)
+example_auto_set_url(splatoonado)
 ```
 
 
